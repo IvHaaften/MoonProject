@@ -1,7 +1,7 @@
 package src.main.java.PerceelTypes;
 
-import src.main.constants.DelfstofType;
 import src.main.java.Perceel;
+import src.main.java.constants.DelfstofType;
 
 public class MijnbouwPerceel extends Perceel {
     DelfstofType delfstof;

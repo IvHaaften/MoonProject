@@ -1,7 +1,7 @@
 package src.main.java.PerceelTypes;
 
-import src.main.constants.GewasType;
 import src.main.java.Perceel;
+import src.main.java.constants.GewasType;
 
 public class LandbouwPerceel extends Perceel {
     GewasType gewas;
