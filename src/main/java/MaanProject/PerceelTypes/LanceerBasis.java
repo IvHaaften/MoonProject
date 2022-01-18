@@ -1,6 +1,6 @@
-package src.main.java.PerceelTypes;
+package MaanProject.PerceelTypes;
 
-import src.main.java.Perceel;
+import MaanProject.Perceel;
 
 public class LanceerBasis extends Perceel {
     int maximaleRaketGrootte;

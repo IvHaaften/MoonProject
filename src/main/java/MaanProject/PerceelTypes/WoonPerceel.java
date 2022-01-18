@@ -1,7 +1,7 @@
-package src.main.java.PerceelTypes;
+package MaanProject.PerceelTypes;
 
-import src.main.java.Inwoner;
-import src.main.java.Perceel;
+import MaanProject.Inwoner;
+import MaanProject.Perceel;
 
 import java.util.List;
 
