@@ -1,5 +1,5 @@
 package src.main.java;
 
-public class AardBewoner {
+public class Inwoner {
     Perceel perceel;
 }

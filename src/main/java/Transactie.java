@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Transactie {
     LocalDate datum;
-    AardBewoner verkoper;
-    AardBewoner aankoper;
+    Inwoner verkoper;
+    Inwoner aankoper;
     Perceel perceel;
 }

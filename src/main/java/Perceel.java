@@ -9,7 +9,7 @@ public class Perceel {
     int oppervlakte;
     List<Map<Double, Double>> begrenzing;
     boolean beperking;
-    AardBewoner eigenaar;
+    Inwoner eigenaar;
 
 
 }
