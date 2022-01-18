@@ -1,6 +1,8 @@
 # MoonProject
 Moon Project for OCP Training
 
+test commit tim
+
 >
 > Beschrijving 
 > De VN wil dat de maan wordt verdeeld onder de verschillende bondgenoten. Hiervoor is een nieuwe organisatie, de Verenigde Ruimte Naties, opgericht met als leden de bondgenoten van de VN. Alle inwoners van de deelnemende landen krijgen een stukje maan, een zogenaamd maanperceel. Elk perceel valt onder één kadastraal land en is van een bepaald type. De verschillende typen zijn: woonperceel, mijnbouwperceel, waterwinperceel, landbouwperceel of lanceerbasis. Elk perceel type heeft zo z’n eigen kenmerken, maar ook een aantal overeenkomende kenmerken zoals oppervlakte, begrenzing etc. De Verenigde Ruimte Naties kunnen beperkingen opleggen op maanpercelen. Een eigenaar kan zijn perceel verkopen aan iemand anders, mits er geen beperking op ligt. Bij verkoop moet vastgelegd worden op welke datum het eigendomsrecht overgaat naar een ander persoon. Verkoop/aankoop wordt vastgelegd in een transactie.
