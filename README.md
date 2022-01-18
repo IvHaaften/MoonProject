@@ -48,3 +48,4 @@ Moon Project for OCP Training
 >  
 > Dit alles moet periodiek gerapporteerd worden. Deze periode moet flexibel zijn. Om te laten zien dat het werkt graag de rapportage uitdraaien per maand (mag console applicatie zijn met output van de rapoortage in het console).
 
+testje....
