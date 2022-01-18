@@ -1,0 +1,39 @@
+Maan
+
+Verenigde Ruimte Naties
+
+Land
+
+Inwoner
++ verkoop
++ inkoop
+
+Transactie
+* Datum
+-> verkopende inwoner
+-> aankopende inwoner
+-> betrokken perceel
+
+Perceel
+* id
+* locatie
+	- Woon
+		* maximaalAantalInwoners
+	- Mijnbouw
+		* TypeDelfstof (enum: helium-3 iridium regoliet goud palladium platina)
+		*JaarOpbrengst
+	- Waterwin
+		* JaarOpbrengst
+	- Landbouw
+		* TypeGewas (enum: Tomaat, Komkommer, Radijs Sla, Paprika)
+		* JaarOpbrengst
+	- Lanceerbasis
+		* RaketGrootte (kg)
+* oppervlakte (is in principe afleidbaar uit begrenzing)
+* begrenzing (lijst van coordinaten, eerste is gelijk aan de laatste)
+* beperking (boolean)
+-> eigenaar
+
+Kadastraal land
+
+
