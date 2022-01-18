@@ -1,3 +1,3 @@
-package constants;
+package src.main.constants;
 
 public enum DelfstofType {HELIUM3, IRIDIUM, REGOLIET, GOUD, PALLADIUM,PLATINA};
