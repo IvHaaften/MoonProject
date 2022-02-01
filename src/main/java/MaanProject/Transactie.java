@@ -1,11 +1,21 @@
 package MaanProject;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
 public class Transactie {
+	//record ID
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private  Integer id;
+
     private final LocalDate datum;
     private final Inwoner verkoper;
     private final Inwoner aankoper;
+
+	@ManyToOne
+	@JoinColumn(name = "perceel_id")
 	private final Perceel perceel;
 
 	public Transactie(LocalDate datum, Inwoner verkoper, Inwoner aankoper, Perceel perceel) {
@@ -23,10 +33,7 @@ public class Transactie {
 		this.verkoper = verkoper;
 		this.aankoper = aankoper;
 		this.perceel = perceel;
-		// hier zou de transactie opgeslagen worden in de database
-
 		this.perceel.setEigenaar(aankoper);
-		// perceel opslaan in de database
 	}
     
 	public LocalDate getDatum() {

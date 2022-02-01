@@ -4,10 +4,17 @@ import MaanProject.Inwoner;
 import MaanProject.Perceel;
 import MaanProject.constants.GewasType;
 
+import javax.persistence.*;
 import java.util.List;
 import java.util.Map;
 
+@Entity
+@DiscriminatorValue("LANDBOUW")
 public class LandbouwPerceel extends Perceel {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private  Integer id;
+
     private GewasType gewas;
     private int jaarOpbrengst;
 

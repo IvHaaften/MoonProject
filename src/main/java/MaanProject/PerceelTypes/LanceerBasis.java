@@ -3,10 +3,17 @@ package MaanProject.PerceelTypes;
 import MaanProject.Inwoner;
 import MaanProject.Perceel;
 
+import javax.persistence.*;
 import java.util.List;
 import java.util.Map;
 
+@Entity
+@DiscriminatorValue("LANCEER")
 public class LanceerBasis extends Perceel {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private  Integer id;
+
     private int maximaleRaketGrootte;
 
     public int getMaximaleRaketGrootte() {

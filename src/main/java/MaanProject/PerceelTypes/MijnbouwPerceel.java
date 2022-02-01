@@ -4,10 +4,18 @@ import MaanProject.Inwoner;
 import MaanProject.Perceel;
 import MaanProject.constants.DelfstofType;
 
+import javax.persistence.*;
 import java.util.List;
 import java.util.Map;
 
+@Entity
+@DiscriminatorValue("MIJN")
 public class MijnbouwPerceel extends Perceel {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private  Integer id;
+
     private DelfstofType delfstof;
     private int jaarOpbrengst;
 
