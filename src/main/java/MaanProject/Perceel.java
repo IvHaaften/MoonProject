@@ -11,7 +11,13 @@ public class Perceel {
     private boolean beperking;
     private Inwoner eigenaar;
 
-    public UUID getId() {
+	public Perceel(List<Map<Double, Double>> begrenzing, Inwoner eigenaar) {
+		this.id = UUID.randomUUID();
+		this.begrenzing = begrenzing;
+		this.eigenaar = eigenaar;
+	}
+
+	public UUID getId() {
 		return id;
 	}
 	public void setId(UUID id) {
