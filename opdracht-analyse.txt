@@ -14,7 +14,7 @@ Transactie
 -> aankopende inwoner
 -> betrokken perceel
 
-Perceel
+MaanProject.Perceel
 * id
 * locatie
 	- Woon
