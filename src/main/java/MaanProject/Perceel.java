@@ -1,5 +1,7 @@
 package MaanProject;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.awt.*;
 import java.util.List;
@@ -9,9 +11,12 @@ import java.util.UUID;
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
 @DiscriminatorColumn(name="PERCEELTYPE")
+@NoArgsConstructor
 public class Perceel {
 	@Id
-    private final UUID id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private  Integer id;
+
     private int oppervlakte;
 
     private Polygon begrenzing;
@@ -21,16 +26,15 @@ public class Perceel {
 	@ManyToOne
     private Inwoner eigenaar;
 
-	@OneToMany(mappedBy = "perceel", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "perceel", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	List<Transactie> transacties;
 
 	public Perceel(Polygon begrenzing, Inwoner eigenaar) {
-		this.id = UUID.randomUUID();
 		this.begrenzing = begrenzing;
 		this.eigenaar = eigenaar;
 	}
 
-	public UUID getId() {
+	public Integer getId() {
 		return id;
 	}
 	public int getOppervlakte() {
@@ -39,6 +43,15 @@ public class Perceel {
 	public Polygon getBegrenzing() {
 		return begrenzing;
 	}
+
+	@Override
+	public String toString() {
+		return "Perceel{" +
+				"id=" + id +
+				", eigenaar=" + eigenaar +
+				'}';
+	}
+
 	public void setBegrenzing(Polygon begrenzing) {
 		this.begrenzing = begrenzing;
 		this.oppervlakte = 5; //moet berekend worden op basis van de begrenzing

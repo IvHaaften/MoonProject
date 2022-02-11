@@ -2,6 +2,7 @@ package MaanProject.PerceelTypes;
 
 import MaanProject.Inwoner;
 import MaanProject.Perceel;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.awt.*;
@@ -10,13 +11,12 @@ import java.util.Map;
 
 @Entity
 @DiscriminatorValue("WOON")
+@NoArgsConstructor()
 public class WoonPerceel extends Perceel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Integer id;
 
     private int maxInwoners;
-    @ElementCollection
+
+    @OneToMany
     private List<Inwoner> inwoners;
 
     public WoonPerceel(Polygon begrenzing, Inwoner eigenaar, int maxInwoners, List<Inwoner> inwoners) {

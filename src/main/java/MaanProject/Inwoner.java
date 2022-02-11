@@ -1,6 +1,8 @@
 package MaanProject;
 
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,14 +11,22 @@ import java.time.LocalDate;
 import java.time.Period;
 
 @Entity
+@NoArgsConstructor
 public class Inwoner {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Integer id;
+    private Integer id;
 
-    private final LocalDate geboortedatum;
+    public String getNaam() {
+        return naam;
+    }
 
-    public Inwoner(LocalDate geboortedatum) {
+    private String naam;
+
+    private LocalDate geboortedatum;
+
+    public Inwoner(String naam, LocalDate geboortedatum) {
+        this.naam = naam;
         this.geboortedatum = geboortedatum;
     }
 

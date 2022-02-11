@@ -2,6 +2,7 @@ package MaanProject.PerceelTypes;
 
 import MaanProject.Inwoner;
 import MaanProject.Perceel;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.awt.*;
@@ -10,11 +11,8 @@ import java.util.Map;
 
 @Entity
 @DiscriminatorValue("WATER")
+@NoArgsConstructor()
 public class WaterwinningPerceel extends Perceel {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Integer id;
 
     private int jaarOpbrengst;
 

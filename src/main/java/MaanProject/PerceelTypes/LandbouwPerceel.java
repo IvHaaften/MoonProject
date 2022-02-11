@@ -3,6 +3,7 @@ package MaanProject.PerceelTypes;
 import MaanProject.Inwoner;
 import MaanProject.Perceel;
 import MaanProject.constants.GewasType;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.awt.*;
@@ -11,10 +12,8 @@ import java.util.Map;
 
 @Entity
 @DiscriminatorValue("LANDBOUW")
+@NoArgsConstructor()
 public class LandbouwPerceel extends Perceel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Integer id;
 
     private GewasType gewas;
     private int jaarOpbrengst;

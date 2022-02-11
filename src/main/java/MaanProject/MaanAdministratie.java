@@ -9,6 +9,7 @@ import MaanProject.constants.GewasType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -214,7 +215,8 @@ final public class MaanAdministratie {
 
         System.out.println("Aantal inwoners ouder dan 30 per woonperceel:");
         System.out.println("ID | aantal");
-        for (WoonPerceel woonPerceel : woonPerceelService.findAll()){
+        var alleWoonPercelen = woonPerceelService.findAll();
+        for (WoonPerceel woonPerceel : alleWoonPercelen){
             System.out.println(woonPerceel.getId() + " | " + aantalInwonersOuderDan30(woonPerceel));
         }
     }
