@@ -4,6 +4,7 @@ import MaanProject.Inwoner;
 import MaanProject.Perceel;
 
 import javax.persistence.*;
+import java.awt.*;
 import java.util.List;
 import java.util.Map;
 
@@ -15,15 +16,16 @@ public class WoonPerceel extends Perceel {
     private  Integer id;
 
     private int maxInwoners;
+    @ElementCollection
     private List<Inwoner> inwoners;
 
-    public WoonPerceel(List<Map<Double, Double>> begrenzing, Inwoner eigenaar, int maxInwoners, List<Inwoner> inwoners) {
+    public WoonPerceel(Polygon begrenzing, Inwoner eigenaar, int maxInwoners, List<Inwoner> inwoners) {
         super(begrenzing, eigenaar);
         this.maxInwoners = maxInwoners;
         this.inwoners = inwoners;
     }
 
-    public WoonPerceel(List<Map<Double, Double>> begrenzing, Inwoner eigenaar, int maxInwoners) {
+    public WoonPerceel(Polygon begrenzing, Inwoner eigenaar, int maxInwoners) {
         super(begrenzing, eigenaar);
         this.maxInwoners = maxInwoners;
     }

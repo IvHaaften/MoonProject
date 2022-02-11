@@ -5,6 +5,7 @@ import MaanProject.Perceel;
 import MaanProject.constants.DelfstofType;
 
 import javax.persistence.*;
+import java.awt.*;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +20,7 @@ public class MijnbouwPerceel extends Perceel {
     private DelfstofType delfstof;
     private int jaarOpbrengst;
 
-    public MijnbouwPerceel(List<Map<Double, Double>> begrenzing, Inwoner eigenaar, DelfstofType delfstof, int jaarOpbrengst) {
+    public MijnbouwPerceel(Polygon begrenzing, Inwoner eigenaar, DelfstofType delfstof, int jaarOpbrengst) {
         super(begrenzing, eigenaar);
         this.delfstof = delfstof;
         this.jaarOpbrengst = jaarOpbrengst;

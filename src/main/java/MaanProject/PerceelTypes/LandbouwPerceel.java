@@ -5,6 +5,7 @@ import MaanProject.Perceel;
 import MaanProject.constants.GewasType;
 
 import javax.persistence.*;
+import java.awt.*;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +19,7 @@ public class LandbouwPerceel extends Perceel {
     private GewasType gewas;
     private int jaarOpbrengst;
 
-    public LandbouwPerceel(List<Map<Double, Double>> begrenzing, Inwoner eigenaar, GewasType gewas, int jaarOpbrengst) {
+    public LandbouwPerceel(Polygon begrenzing, Inwoner eigenaar, GewasType gewas, int jaarOpbrengst) {
         super(begrenzing, eigenaar);
         this.gewas = gewas;
         this.jaarOpbrengst = jaarOpbrengst;

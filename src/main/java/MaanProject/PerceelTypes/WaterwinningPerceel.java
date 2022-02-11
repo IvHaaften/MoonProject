@@ -4,6 +4,7 @@ import MaanProject.Inwoner;
 import MaanProject.Perceel;
 
 import javax.persistence.*;
+import java.awt.*;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +22,7 @@ public class WaterwinningPerceel extends Perceel {
         return jaarOpbrengst;
     }
 
-    public WaterwinningPerceel(List<Map<Double, Double>> begrenzing, Inwoner eigenaar, int jaarOpbrengst) {
+    public WaterwinningPerceel(Polygon begrenzing, Inwoner eigenaar, int jaarOpbrengst) {
         super(begrenzing, eigenaar);
         this.jaarOpbrengst = jaarOpbrengst;
     }

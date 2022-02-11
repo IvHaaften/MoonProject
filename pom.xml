@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>ocp.example.moon</groupId>
-    <artifactId>moon-project</artifactId>
+    <artifactId>moonproject</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>moon-project</name>
     <description>Moon Sample Application</description>

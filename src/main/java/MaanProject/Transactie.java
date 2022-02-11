@@ -11,7 +11,9 @@ public class Transactie {
 	private  Integer id;
 
     private final LocalDate datum;
+	@ManyToOne
     private final Inwoner verkoper;
+	@ManyToOne
     private final Inwoner aankoper;
 
 	@ManyToOne

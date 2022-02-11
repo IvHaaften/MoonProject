@@ -1,6 +1,7 @@
 package MaanProject;
 
 import javax.persistence.*;
+import java.awt.*;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -12,14 +13,18 @@ public class Perceel {
 	@Id
     private final UUID id;
     private int oppervlakte;
-    private  List<Map<Double, Double>> begrenzing;
+
+    private Polygon begrenzing;
+
     private boolean beperking;
+
+	@ManyToOne
     private Inwoner eigenaar;
 
 	@OneToMany(mappedBy = "perceel", cascade = CascadeType.ALL, orphanRemoval = true)
 	List<Transactie> transacties;
 
-	public Perceel(List<Map<Double, Double>> begrenzing, Inwoner eigenaar) {
+	public Perceel(Polygon begrenzing, Inwoner eigenaar) {
 		this.id = UUID.randomUUID();
 		this.begrenzing = begrenzing;
 		this.eigenaar = eigenaar;
@@ -31,10 +36,10 @@ public class Perceel {
 	public int getOppervlakte() {
 		return oppervlakte;
 	}
-	public List<Map<Double, Double>> getBegrenzing() {
+	public Polygon getBegrenzing() {
 		return begrenzing;
 	}
-	public void setBegrenzing(List<Map<Double, Double>> begrenzing) {
+	public void setBegrenzing(Polygon begrenzing) {
 		this.begrenzing = begrenzing;
 		this.oppervlakte = 5; //moet berekend worden op basis van de begrenzing
 	}

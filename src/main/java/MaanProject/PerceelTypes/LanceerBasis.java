@@ -4,6 +4,7 @@ import MaanProject.Inwoner;
 import MaanProject.Perceel;
 
 import javax.persistence.*;
+import java.awt.*;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +25,7 @@ public class LanceerBasis extends Perceel {
         this.maximaleRaketGrootte = maximaleRaketGrootte;
     }
 
-    public LanceerBasis(List<Map<Double, Double>> begrenzing, Inwoner eigenaar, int maximaleRaketGrootte) {
+    public LanceerBasis(Polygon begrenzing, Inwoner eigenaar, int maximaleRaketGrootte) {
         super(begrenzing, eigenaar);
         this.maximaleRaketGrootte = maximaleRaketGrootte;
     }
