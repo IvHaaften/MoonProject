@@ -1,5 +1,6 @@
-package MaanProject;
+package MaanProject.Vervoer;
 
+import MaanProject.Perceel;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
