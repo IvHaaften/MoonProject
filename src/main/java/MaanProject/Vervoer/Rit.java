@@ -1,6 +1,8 @@
 package MaanProject.Vervoer;
 
 import MaanProject.Inwoner;
+import MaanProject.constants.KratFormaat;
+import java.util.stream.Collectors;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -29,16 +31,18 @@ public class Rit {
     private Station beginStation;
     private Station eindStation;
 
-    public Rit(HashMap<Zitplaats, Inwoner> passagiersLijst, LinkedList<Vracht> vrachtLijst, ZonedDateTime vertrektijd, Station beginStation, Station eindStation) {
-        this.passagiersLijst = passagiersLijst;
+    public Rit(Vervoersmiddel vervoersmiddel, HashMap<Zitplaats, Inwoner> passagiersLijst, LinkedList<Vracht> vrachtLijst, ZonedDateTime vertrektijd, Station beginStation, Station eindStation) {
+		this.vervoersmiddel = vervoersmiddel;
+		this.passagiersLijst = passagiersLijst;
         this.vrachtLijst = vrachtLijst;
         this.vertrektijd = vertrektijd;
         this.beginStation = beginStation;
         this.eindStation = eindStation;
     }
 
-    public void plaatVracht(Vracht vracht) {
-        boolean plaatsVrachGelukt = vracht.getBederfelijk() ? vrachtLijst.offerFirst(vracht) : vrachtLijst.offerLast(vracht);
+    public boolean plaatsVracht(Vracht vracht) {
+    	boolean kanToegevoegdWorden = vrachtLijst.stream().map(Vracht::getFormaat).mapToInt(value -> value.formaat).sum() + vracht.getFormaat().formaat <= vervoersmiddel.getVrachtcapaciteit();
+		return kanToegevoegdWorden && (vracht.getBederfelijk() ? vrachtLijst.offerFirst(vracht) : vrachtLijst.offerLast(vracht));
     }
 
     public void sorteerVracht() {
