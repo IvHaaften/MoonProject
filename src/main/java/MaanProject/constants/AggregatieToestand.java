@@ -1,5 +1,5 @@
 package MaanProject.constants;
 
-public enum AggregatieToestant {
+public enum AggregatieToestand {
     GAS, VAST, VLOEIBAAR
 }
