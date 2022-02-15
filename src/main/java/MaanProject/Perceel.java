@@ -27,6 +27,9 @@ public class Perceel {
     @OneToMany(mappedBy = "perceel", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     List<Transactie> transacties;
 
+    @OneToMany(mappedBy = "perceel", cascade = CascadeType.ALL)
+    List<Station> stations;
+
     public Perceel(Polygon begrenzing, Inwoner eigenaar) {
         this.begrenzing = begrenzing;
         this.eigenaar = eigenaar;
