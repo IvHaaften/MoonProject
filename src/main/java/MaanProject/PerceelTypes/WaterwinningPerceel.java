@@ -4,10 +4,9 @@ import MaanProject.Inwoner;
 import MaanProject.Perceel;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import java.awt.*;
-import java.util.List;
-import java.util.Map;
 
 @Entity
 @DiscriminatorValue("WATER")

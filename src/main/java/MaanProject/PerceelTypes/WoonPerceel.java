@@ -4,10 +4,11 @@ import MaanProject.Inwoner;
 import MaanProject.Perceel;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.awt.*;
 import java.util.List;
-import java.util.Map;
 
 @Entity
 @DiscriminatorValue("WOON")
@@ -43,12 +44,12 @@ public class WoonPerceel extends Perceel {
     }
 
     public void intrekkenInwoner(Inwoner inwoner) {
-        if(inwoners.size()+1 <= maxInwoners) {
-            this.inwoners.add(inwoner);
+        if (inwoners.size() + 1 <= maxInwoners) {
+            inwoners.add(inwoner);
         }
     }
 
     public void vertrekkenInwoner(Inwoner inwoner) {
-        this.inwoners.remove(inwoner);
+        inwoners.remove(inwoner);
     }
 }

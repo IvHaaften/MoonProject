@@ -5,10 +5,9 @@ import MaanProject.Perceel;
 import MaanProject.constants.DelfstofType;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import java.awt.*;
-import java.util.List;
-import java.util.Map;
 
 @Entity
 @DiscriminatorValue("MIJN")
