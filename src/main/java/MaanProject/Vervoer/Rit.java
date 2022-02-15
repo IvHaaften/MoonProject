@@ -1,54 +1,48 @@
 package MaanProject.Vervoer;
 
 import MaanProject.Inwoner;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 import java.time.ZonedDateTime;
-import java.util.ArrayDeque;
 import java.util.HashMap;
 import java.util.LinkedList;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor
-public class Rit
-{
-	//record ID
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+public class Rit {
+    //record ID
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-	@OneToMany(mappedBy = "rit", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private HashMap<Zitplaats, Inwoner> passagiersLijst;
+    @ManyToOne
+    private Vervoersmiddel vervoersmiddel;
 
-	@OneToMany(mappedBy = "rit", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private LinkedList<Vracht> vrachtLijst;
+    @OneToMany(mappedBy = "rit", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private HashMap<Zitplaats, Inwoner> passagiersLijst;
 
-	private ZonedDateTime vertrektijd;
-	private Station beginStation;
-	private Station eindStation;
+    @OneToMany(mappedBy = "rit", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private LinkedList<Vracht> vrachtLijst;
 
-	public Rit(HashMap<Zitplaats, Inwoner> passagiersLijst, LinkedList<Vracht> vrachtLijst, ZonedDateTime vertrektijd, Station beginStation, Station eindStation)
-	{
-		this.passagiersLijst = passagiersLijst;
+    private ZonedDateTime vertrektijd;
+    private Station beginStation;
+    private Station eindStation;
 
-		this.vrachtLijst = vrachtLijst;
-		this.vertrektijd = vertrektijd;
-		this.beginStation = beginStation;
-		this.eindStation = eindStation;
-	}
+    public Rit(HashMap<Zitplaats, Inwoner> passagiersLijst, LinkedList<Vracht> vrachtLijst, ZonedDateTime vertrektijd, Station beginStation, Station eindStation) {
+        this.passagiersLijst = passagiersLijst;
+        this.vrachtLijst = vrachtLijst;
+        this.vertrektijd = vertrektijd;
+        this.beginStation = beginStation;
+        this.eindStation = eindStation;
+    }
 
-	public void plaatVracht(Vracht vracht){
-		boolean plaatsVrachGelukt = vracht.getBederfelijk() ? vrachtLijst.offerFirst(vracht) : vrachtLijst.offerLast(vracht);
-	}
+    public void plaatVracht(Vracht vracht) {
+        boolean plaatsVrachGelukt = vracht.getBederfelijk() ? vrachtLijst.offerFirst(vracht) : vrachtLijst.offerLast(vracht);
+    }
 
-	public void sorteerVracht(){
-		vrachtLijst.sort(Vracht::compareTo);
-	}
+    public void sorteerVracht() {
+        vrachtLijst.sort(Vracht::compareTo);
+    }
 
 }

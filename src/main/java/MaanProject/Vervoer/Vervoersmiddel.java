@@ -5,15 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Vervoermiddel {
+public class Vervoersmiddel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,4 +24,7 @@ public class Vervoermiddel {
     @Getter
     private int passagiercapaciteit;
 
+    @Getter
+    @OneToMany(mappedBy = "vervoersmiddel", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Rit> ritten;
 }
