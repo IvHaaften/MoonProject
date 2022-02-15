@@ -1,8 +1,9 @@
-package MaanProject;
+package MaanProject.Vervoer;
 
+import MaanProject.Inwoner;
 import java.time.ZonedDateTime;
 import java.util.ArrayDeque;
-import java.util.Map;
+import java.util.HashMap;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,7 +23,7 @@ public class Rit
 	private Integer id;
 
 	@OneToMany(mappedBy = "rit", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private Map<Zitplaats, Inwoner> passagiersLijst;
+	private HashMap<Zitplaats, Inwoner> passagiersLijst;
 
 	@OneToMany(mappedBy = "rit", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private ArrayDeque<Vracht> vrachtLijst;
@@ -31,7 +32,7 @@ public class Rit
 	private Station beginStation;
 	private Station eindStation;
 
-	private Rit(Map<Zitplaats, Inwoner> passagiersLijst, ArrayDeque<Vracht> vrachtLijst, ZonedDateTime vertrektijd, Station beginStation, Station eindStation)
+	private Rit(HashMap<Zitplaats, Inwoner> passagiersLijst, ArrayDeque<Vracht> vrachtLijst, ZonedDateTime vertrektijd, Station beginStation, Station eindStation)
 	{
 		this.passagiersLijst = passagiersLijst;
 
