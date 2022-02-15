@@ -17,8 +17,6 @@ public class Station {
 
     private String naam;
 
-    /*    private List<Rit> ritten;*/
-
     public Perceel getPerceel() {
         return perceel;
     }
@@ -26,14 +24,6 @@ public class Station {
     public String getNaam() {
         return naam;
     }
-
-/*    public List<Rit> getRitten() {
-        return ritten;
-    }
-
-    public void ritToevoegen(Rit... ritten) {
-        this.ritten.addAll(ritten);
-    }*/
 
     public Station(Perceel perceel, String naam) {
         this.perceel = perceel;
