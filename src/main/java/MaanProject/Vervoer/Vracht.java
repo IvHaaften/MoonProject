@@ -2,6 +2,7 @@ package MaanProject.Vervoer;
 
 import MaanProject.constants.AggregatieToestand;
 import MaanProject.constants.KratFormaat;
+import java.util.Comparator;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +15,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Vracht {
+public class Vracht implements Comparable<Vracht>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,4 +31,10 @@ public class Vracht {
     private int gewicht;
     @Getter
     private int inhoud;
+
+	@Override
+	public int compareTo(Vracht vracht)
+	{
+		return Boolean.compare(bederfelijk, vracht.bederfelijk);
+	}
 }
