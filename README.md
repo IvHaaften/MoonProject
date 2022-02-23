@@ -115,3 +115,5 @@ vertrekken. Je kunt er dan voor kiezen om kratten met bederfelijke waar voorrang
 
 De verschillende typen kratten moeten onderling vergeleken kunnen worden en gesorteerd kunnen worden op bepaalde
 eigenschappen.
+
+---
