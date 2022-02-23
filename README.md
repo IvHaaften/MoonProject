@@ -79,6 +79,8 @@ De VN wil de administratie van delfstoffen verder uitwerken.
 * Maanadministratie moet singleton worden.
 * Verder, voor zover dit nog niet is toegepast op het model dient encapsulation te worden toegepast.
 
+---
+
 #### **Deel 4**
 
 Om mensen en waren van de ene plek naar de andere te kunnen vervoeren zijn er op de maan een aantal vervoersbedrijven.
