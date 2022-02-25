@@ -1,8 +1,6 @@
 package MaanProject.Vervoer;
 
 import MaanProject.Inwoner;
-import MaanProject.constants.KratFormaat;
-import java.util.stream.Collectors;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -21,19 +19,22 @@ public class Rit {
     @ManyToOne
     private Vervoersmiddel vervoersmiddel;
 
-    @OneToMany(mappedBy = "rit", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //@OneToMany(mappedBy = "rit", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private HashMap<Zitplaats, Inwoner> passagiersLijst;
 
-    @OneToMany(mappedBy = "rit", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //@OneToMany(mappedBy = "rit", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private LinkedList<Vracht> vrachtLijst;
 
     private ZonedDateTime vertrektijd;
+
+    @ManyToOne
     private Station beginStation;
+    @ManyToOne
     private Station eindStation;
 
     public Rit(Vervoersmiddel vervoersmiddel, HashMap<Zitplaats, Inwoner> passagiersLijst, LinkedList<Vracht> vrachtLijst, ZonedDateTime vertrektijd, Station beginStation, Station eindStation) {
-		this.vervoersmiddel = vervoersmiddel;
-		this.passagiersLijst = passagiersLijst;
+        this.vervoersmiddel = vervoersmiddel;
+        this.passagiersLijst = passagiersLijst;
         this.vrachtLijst = vrachtLijst;
         this.vertrektijd = vertrektijd;
         this.beginStation = beginStation;
@@ -41,8 +42,8 @@ public class Rit {
     }
 
     public boolean plaatsVracht(Vracht vracht) {
-    	boolean kanToegevoegdWorden = vrachtLijst.stream().map(Vracht::getFormaat).mapToInt(value -> value.formaat).sum() + vracht.getFormaat().formaat <= vervoersmiddel.getVrachtcapaciteit();
-		return kanToegevoegdWorden && (vracht.getBederfelijk() ? vrachtLijst.offerFirst(vracht) : vrachtLijst.offerLast(vracht));
+        boolean kanToegevoegdWorden = vrachtLijst.stream().map(Vracht::getFormaat).mapToInt(value -> value.formaat).sum() + vracht.getFormaat().formaat <= vervoersmiddel.getVrachtcapaciteit();
+        return kanToegevoegdWorden && (vracht.getBederfelijk() ? vrachtLijst.offerFirst(vracht) : vrachtLijst.offerLast(vracht));
     }
 
     public void sorteerVracht() {
