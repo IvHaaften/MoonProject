@@ -7,28 +7,25 @@ Komkommer
 Radijs
 Sla
 Paprika
-Cannabis
-Maanzaad
-Elk perceel heeft een bepaalde oppervlakte en een bepaalde opbrengst in kg per vierkante meter per jaar.
+Cannabis (NIEUW)
+Maanzaad (NIEUW)
+Elk perceel heeft een bepaalde oppervlakte en een bepaalde opbrengst in kg per vierkante meter per jaar. -> UIT JAAROPBRENGST
 
-Maak percelen aan met verschillende gewassen en verschillende opbrengsten.
+Maak percelen aan met verschillende gewassen en verschillende opbrengsten. -> DEELS GEDAAN, EXTRA MAKEN
 
-Omdat Cannabis en Maanzaad onder de opiaten vallen is voor beide een vergunning nodig.
+Omdat Cannabis en Maanzaad onder de opiaten vallen is voor beide een vergunning nodig. -> NIEUWE CLASS VERGUNNING GENERIC GEWAS + TOEPASSEN
 
 Een vergunning is een document/klasse waarin staat:
 
-Wie de vergunning verleend heeft
-Welk gewas
-Voor welke periode
-De opiaatvergunning is een Optional voor de klasse perceel.
+- Wie de vergunning verleend heeft -> INWONER
+- Welk gewas -> GEWASTYPE
+- Voor welke periode -> 2 DATA
+- De opiaatvergunning is een Optional voor de klasse perceel. - OPTIONAL<VERGUNNING>
 
-Het moet mogelijk zijn om op te vragen welke gewassen de meeste opbrengst leveren, welke percelen de meeste opbrengst leveren. Ook moet aan de gewassen een voedingswaarde gekoppeld worden en bekeken kunnen worden welke gewassen de hoogste voedingswaarde opleveren.
+Het moet mogelijk zijn om op te vragen welke gewassen de meeste opbrengst leveren, welke percelen de meeste opbrengst leveren. -> MOOIE FUNCTIONELEMETHODES MAANADMINISTRATIE
+Ook moet aan de gewassen een voedingswaarde (NIEUW + COMPARABLE GEWASTYPE) gekoppeld worden en bekeken kunnen worden welke gewassen de hoogste voedingswaarde opleveren. -> MOOIE FUNCTIONELEMETHODES MAANADMINISTRATIE
 
- 
+Ook voor delfstoffen hebben hoog radioactieve stoffen een vergunning nodig. -> VERGUNNING GENERIC DELFSTOF
 
-Ook voor delfstoffen hebben hoog radioactieve stoffen een vergunning nodig.
-
- 
-
-Er moeten rapporten uitgedraaid worden over welke vergunning er verstrekt zijn. Dit moet voor zowel delfstoffen als gewassen werken.
+Er moeten rapporten uitgedraaid worden over welke vergunning er verstrekt zijn. Dit moet voor zowel delfstoffen als gewassen werken. -> MOOIE FUNCTIONELEMETHODES MAANADMINISTRATIE
 
