@@ -32,7 +32,7 @@ public class Perceel {
     List<Station> stations;
 
     public Perceel(Polygon begrenzing, Inwoner eigenaar) {
-        this.begrenzing = begrenzing;
+        setBegrenzing(begrenzing);
         this.eigenaar = eigenaar;
     }
 
