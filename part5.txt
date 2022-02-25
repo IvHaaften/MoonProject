@@ -7,20 +7,21 @@ Komkommer
 Radijs
 Sla
 Paprika
-Cannabis (NIEUW)
-Maanzaad (NIEUW)
-Elk perceel heeft een bepaalde oppervlakte en een bepaalde opbrengst in kg per vierkante meter per jaar. -> UIT JAAROPBRENGST
+Cannabis (x)
+Maanzaad (x)
 
-Maak percelen aan met verschillende gewassen en verschillende opbrengsten. -> DEELS GEDAAN, EXTRA MAKEN
+Elk perceel heeft een bepaalde oppervlakte en een bepaalde opbrengst in kg per vierkante meter per jaar. -> (x)
 
-Omdat Cannabis en Maanzaad onder de opiaten vallen is voor beide een vergunning nodig. -> NIEUWE CLASS VERGUNNING GENERIC GEWAS + TOEPASSEN
+Maak percelen aan met verschillende gewassen en verschillende opbrengsten. -> (X)
+
+Omdat Cannabis en Maanzaad onder de opiaten vallen is voor beide een vergunning nodig. -> (x)
 
 Een vergunning is een document/klasse waarin staat:
 
 - Wie de vergunning verleend heeft -> INWONER
 - Welk gewas -> GEWASTYPE
 - Voor welke periode -> 2 DATA
-- De opiaatvergunning is een Optional voor de klasse perceel. - OPTIONAL<VERGUNNING>
+- De opiaatvergunning is een Optional voor de klasse perceel. - OPTIONAL<VERGUNNING> (x)
 
 Het moet mogelijk zijn om op te vragen welke gewassen de meeste opbrengst leveren, welke percelen de meeste opbrengst leveren. -> MOOIE FUNCTIONELEMETHODES MAANADMINISTRATIE
 Ook moet aan de gewassen een voedingswaarde (NIEUW + COMPARABLE GEWASTYPE) gekoppeld worden en bekeken kunnen worden welke gewassen de hoogste voedingswaarde opleveren. -> MOOIE FUNCTIONELEMETHODES MAANADMINISTRATIE

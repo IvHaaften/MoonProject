@@ -3,6 +3,9 @@ package MaanProject.PerceelTypes;
 import MaanProject.Inwoner;
 import MaanProject.Perceel;
 import MaanProject.constants.DelfstofType;
+import MaanProject.constants.Vergunning;
+import java.util.Optional;
+import javax.persistence.OneToOne;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.DiscriminatorValue;
@@ -17,11 +20,15 @@ public class MijnbouwPerceel extends Perceel {
     private DelfstofType delfstof;
     private int jaarOpbrengst;
 
-    public MijnbouwPerceel(Polygon begrenzing, Inwoner eigenaar, DelfstofType delfstof, int jaarOpbrengst) {
+	@OneToOne
+    private Optional<Vergunning<DelfstofType>> optionalVergunning;
+
+    public MijnbouwPerceel(Polygon begrenzing, Inwoner eigenaar, DelfstofType delfstof, int jaarOpbrengst, Optional<Vergunning<DelfstofType>> optionalVergunning) {
         super(begrenzing, eigenaar);
         this.delfstof = delfstof;
         this.jaarOpbrengst = jaarOpbrengst;
-    }
+		this.optionalVergunning = optionalVergunning;
+	}
 
     public DelfstofType getDelfstof() {
         return delfstof;

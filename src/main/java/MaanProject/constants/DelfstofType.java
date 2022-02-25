@@ -1,6 +1,7 @@
 package MaanProject.constants;
 
-public enum DelfstofType {
+public enum DelfstofType implements GenericType
+{
     HELIUM3(false), IRIDIUM(true), REGOLIET(false), GOUD(false), PALLADIUM(false), PLATINA(false);
     private final boolean radioactief;
 

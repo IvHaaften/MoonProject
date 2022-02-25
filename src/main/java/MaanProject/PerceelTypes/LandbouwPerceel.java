@@ -3,6 +3,9 @@ package MaanProject.PerceelTypes;
 import MaanProject.Inwoner;
 import MaanProject.Perceel;
 import MaanProject.constants.GewasType;
+import MaanProject.constants.Vergunning;
+import java.util.Optional;
+import javax.persistence.OneToOne;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.DiscriminatorValue;
@@ -17,11 +20,15 @@ public class LandbouwPerceel extends Perceel {
     private GewasType gewas;
     private int jaarOpbrengst;
 
-    public LandbouwPerceel(Polygon begrenzing, Inwoner eigenaar, GewasType gewas, int jaarOpbrengst) {
+    @OneToOne
+    private Optional<Vergunning<GewasType>> optionalVergunning;
+
+    public LandbouwPerceel(Polygon begrenzing, Inwoner eigenaar, GewasType gewas, int jaarOpbrengst, Optional<Vergunning<GewasType>> optionalVergunning) {
         super(begrenzing, eigenaar);
         this.gewas = gewas;
         this.jaarOpbrengst = jaarOpbrengst;
-    }
+		this.optionalVergunning = optionalVergunning;
+	}
 
     public GewasType getGewas() {
         return gewas;
