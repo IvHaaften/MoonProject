@@ -25,6 +25,13 @@ public class Inwoner {
 
     private LocalDate geboortedatum;
 
+    @Override
+    public String toString() {
+        return "Inwoner{" +
+                "naam='" + naam + '\'' +
+                '}';
+    }
+
     public Inwoner(String naam, LocalDate geboortedatum) {
         this.naam = naam;
         this.geboortedatum = geboortedatum;
