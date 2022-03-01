@@ -32,7 +32,6 @@ public class Delfstof {
         if (elementnaam == null) {
             throw new DelfstofException();
         }
-
         this.id = id;
         this.elementnaam = elementnaam;
         this.elementnummer = elementnummer;
