@@ -1,6 +1,7 @@
-package MaanProject;
+package MaanProject.Models;
 
-import MaanProject.Vervoer.Station;
+import MaanProject.Models.Vervoer.Station;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "PERCEELTYPE")
 @NoArgsConstructor
+@Getter
 public class Perceel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +28,7 @@ public class Perceel {
     private Inwoner eigenaar;
 
     @OneToMany(mappedBy = "perceel", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    public
     List<Transactie> transacties;
 
     @OneToMany(mappedBy = "perceel", cascade = CascadeType.ALL)
@@ -34,18 +37,6 @@ public class Perceel {
     public Perceel(Polygon begrenzing, Inwoner eigenaar) {
         setBegrenzing(begrenzing);
         this.eigenaar = eigenaar;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public int getOppervlakte() {
-        return oppervlakte;
-    }
-
-    public Polygon getBegrenzing() {
-        return begrenzing;
     }
 
     @Override
@@ -61,16 +52,8 @@ public class Perceel {
         oppervlakte = 5; //moet berekend worden op basis van de begrenzing
     }
 
-    public boolean isBeperking() {
-        return beperking;
-    }
-
     public void setBeperking(boolean beperking) {
         this.beperking = beperking;
-    }
-
-    public Inwoner getEigenaar() {
-        return eigenaar;
     }
 
     public void setEigenaar(Inwoner eigenaar) {

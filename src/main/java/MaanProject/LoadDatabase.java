@@ -1,8 +1,9 @@
 package MaanProject;
 
-import MaanProject.PerceelTypes.LandbouwPerceel;
-import MaanProject.PerceelTypes.MijnbouwPerceel;
-import MaanProject.PerceelTypes.WoonPerceel;
+import MaanProject.Models.Inwoner;
+import MaanProject.Models.PerceelTypes.LandbouwPerceel;
+import MaanProject.Models.PerceelTypes.MijnbouwPerceel;
+import MaanProject.Models.PerceelTypes.WoonPerceel;
 import MaanProject.Service.*;
 import MaanProject.constants.Delfstof;
 import MaanProject.constants.DelfstofType;
@@ -38,7 +39,7 @@ public class LoadDatabase {
             Inwoner navn = inwonerService.save(new Inwoner("Navn Navnesen", LocalDate.of(1920, 1, 1)));
             Inwoner kovacs = inwonerService.save(new Inwoner("Kovács János", LocalDate.of(2001, 1, 1)));
 
-            for  (Delfstof d : DelfstofType.values()) {
+            for (Delfstof d : DelfstofType.values()) {
                 delfstofService.save(d);
             }
 

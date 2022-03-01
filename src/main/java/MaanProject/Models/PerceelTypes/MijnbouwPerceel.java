@@ -1,7 +1,7 @@
-package MaanProject.PerceelTypes;
+package MaanProject.Models.PerceelTypes;
 
-import MaanProject.Inwoner;
-import MaanProject.Perceel;
+import MaanProject.Models.Inwoner;
+import MaanProject.Models.Perceel;
 import MaanProject.constants.Delfstof;
 import MaanProject.constants.Vergunning;
 import lombok.NoArgsConstructor;

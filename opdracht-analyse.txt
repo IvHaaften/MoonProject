@@ -14,7 +14,7 @@ Transactie
 -> aankopende inwoner
 -> betrokken perceel
 
-MaanProject.Perceel
+MaanProject.Models.Perceel
 * id
 * locatie
 	- Woon

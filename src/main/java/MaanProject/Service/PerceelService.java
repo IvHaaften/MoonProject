@@ -1,6 +1,6 @@
 package MaanProject.Service;
 
-import MaanProject.Perceel;
+import MaanProject.Models.Perceel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

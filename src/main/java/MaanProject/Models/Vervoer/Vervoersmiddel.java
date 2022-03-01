@@ -1,4 +1,4 @@
-package MaanProject.Vervoer;
+package MaanProject.Models.Vervoer;
 
 import MaanProject.constants.VervoerType;
 import lombok.AllArgsConstructor;

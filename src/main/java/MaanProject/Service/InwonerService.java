@@ -1,6 +1,6 @@
 package MaanProject.Service;
 
-import MaanProject.Inwoner;
+import MaanProject.Models.Inwoner;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

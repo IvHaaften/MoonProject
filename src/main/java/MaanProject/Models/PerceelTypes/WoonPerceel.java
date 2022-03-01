@@ -1,8 +1,8 @@
-package MaanProject.PerceelTypes;
+package MaanProject.Models.PerceelTypes;
 
 import MaanProject.Exceptions.MaxInwonerException;
-import MaanProject.Inwoner;
-import MaanProject.Perceel;
+import MaanProject.Models.Inwoner;
+import MaanProject.Models.Perceel;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.DiscriminatorValue;
@@ -44,13 +44,12 @@ public class WoonPerceel extends Perceel {
         return inwoners;
     }
 
-    public void intrekkenInwoner(Inwoner inwoner) throws MaxInwonerException
-	{
-    	if (inwoners.size() + 1 <= maxInwoners) {
+    public void intrekkenInwoner(Inwoner inwoner) throws MaxInwonerException {
+        if (inwoners.size() + 1 <= maxInwoners) {
             inwoners.add(inwoner);
-        } else{
-    		throw new MaxInwonerException();
-		}
+        } else {
+            throw new MaxInwonerException();
+        }
     }
 
     public void vertrekkenInwoner(Inwoner inwoner) {

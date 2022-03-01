@@ -1,8 +1,7 @@
-package MaanProject.Vervoer;
+package MaanProject.Models.Vervoer;
 
 import MaanProject.constants.AggregatieToestand;
 import MaanProject.constants.KratFormaat;
-import java.util.Comparator;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

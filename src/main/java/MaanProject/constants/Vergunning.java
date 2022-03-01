@@ -1,6 +1,6 @@
 package MaanProject.constants;
 
-import MaanProject.Inwoner;
+import MaanProject.Models.Inwoner;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

@@ -1,8 +1,9 @@
 package MaanProject;
 
-import MaanProject.PerceelTypes.LandbouwPerceel;
-import MaanProject.PerceelTypes.MijnbouwPerceel;
-import MaanProject.PerceelTypes.WoonPerceel;
+import MaanProject.Models.Perceel;
+import MaanProject.Models.PerceelTypes.LandbouwPerceel;
+import MaanProject.Models.PerceelTypes.MijnbouwPerceel;
+import MaanProject.Models.PerceelTypes.WoonPerceel;
 import MaanProject.Service.*;
 import MaanProject.constants.Delfstof;
 import MaanProject.constants.DelfstofType;
@@ -72,7 +73,7 @@ final public class MaanAdministratie {
         var alleTransacties = transactieService.findByDateRange(beginDatum, eindDatum);
         var gemiddelde = alleTransacties.size() / allePercelen.size();
         return allePercelen.stream()
-                .filter(perceel -> perceel.transacties.stream()
+                .filter(perceel -> perceel.getTransacties().stream()
                         .filter(transactie -> !transactie.getDatum().isBefore(beginDatum) &&
                                 !transactie.getDatum().isAfter(eindDatum))
                         .count() < gemiddelde)
@@ -209,7 +210,7 @@ final public class MaanAdministratie {
             System.out.println("Gemiddelde opbrengst van landbouw percelen die " + g + " verbouwen: " + gemiddeldeOpbrengstPerperceelPerGewas(g));
         }
 
-        for  (Delfstof d : DelfstofType.values()) {
+        for (Delfstof d : DelfstofType.values()) {
             System.out.println("Gemiddelde opbrengst van mijnbouw percelen die " + d + " winnen: " + gemiddeldeOpbrengstPerperceelPerDelfStof(d));
         }
 

@@ -1,4 +1,4 @@
-package MaanProject.Vervoer;
+package MaanProject.Models.Vervoer;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

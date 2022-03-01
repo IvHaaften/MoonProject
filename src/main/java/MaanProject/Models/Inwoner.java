@@ -1,4 +1,4 @@
-package MaanProject;
+package MaanProject.Models;
 
 
 import lombok.NoArgsConstructor;

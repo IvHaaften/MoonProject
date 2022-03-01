@@ -1,6 +1,6 @@
-package MaanProject.Vervoer;
+package MaanProject.Models.Vervoer;
 
-import MaanProject.Inwoner;
+import MaanProject.Models.Inwoner;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
