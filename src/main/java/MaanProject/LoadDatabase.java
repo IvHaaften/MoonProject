@@ -4,6 +4,7 @@ import MaanProject.PerceelTypes.LandbouwPerceel;
 import MaanProject.PerceelTypes.MijnbouwPerceel;
 import MaanProject.PerceelTypes.WoonPerceel;
 import MaanProject.Service.*;
+import MaanProject.constants.Delfstof;
 import MaanProject.constants.DelfstofType;
 import MaanProject.constants.GewasType;
 import MaanProject.constants.Vergunning;
@@ -24,7 +25,8 @@ public class LoadDatabase {
     //Will get automatically loaded by Spring to set up some sample data.
     @Bean
     CommandLineRunner initDatabase(InwonerService inwonerService, WoonperceelService woonperceelService, MijnbouwPerceelService mijnbouwPerceelService,
-                                   LandbouwPerceelService landbouwPerceelService, DelfstofVergunningService delfstofVergunningService, GewasVergunningService gewasVergunningService) {
+                                   LandbouwPerceelService landbouwPerceelService, DelfstofVergunningService delfstofVergunningService,
+                                   GewasVergunningService gewasVergunningService, DelfstofService delfstofService) {
         return args -> {
             log.info("Preloading inwoners");
             Inwoner jan = inwonerService.save(new Inwoner("Jan Jansen", LocalDate.of(1949, 1, 1)));
@@ -36,7 +38,12 @@ public class LoadDatabase {
             Inwoner navn = inwonerService.save(new Inwoner("Navn Navnesen", LocalDate.of(1920, 1, 1)));
             Inwoner kovacs = inwonerService.save(new Inwoner("Kovács János", LocalDate.of(2001, 1, 1)));
 
-            Vergunning<DelfstofType> irridiumVergunning = delfstofVergunningService.save(new Vergunning<>(jan, DelfstofType.IRIDIUM, LocalDate.now().minusMonths(2), LocalDate.now().plusMonths(2)));
+            for  (Delfstof d : DelfstofType.values()) {
+                delfstofService.save(d);
+            }
+
+
+            Vergunning<Delfstof> irridiumVergunning = delfstofVergunningService.save(new Vergunning<>(jan, DelfstofType.IRIDIUM, LocalDate.now().minusMonths(2), LocalDate.now().plusMonths(2)));
             Vergunning<GewasType> maanzaadVergunning = gewasVergunningService.save(new Vergunning<>(jan, GewasType.MAANZAAD, LocalDate.now().minusMonths(5), LocalDate.now().plusMonths(3)));
             Vergunning<GewasType> cannabisVergunning = gewasVergunningService.save(new Vergunning<>(jan, GewasType.CANNABIS, LocalDate.now().minusMonths(11), LocalDate.now().plusMonths(5)));
 

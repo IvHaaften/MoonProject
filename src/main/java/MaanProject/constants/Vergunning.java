@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Entity
 @Getter
 @Access(AccessType.FIELD)
-public class Vergunning<T extends GenericType> {
+public class Vergunning<T> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

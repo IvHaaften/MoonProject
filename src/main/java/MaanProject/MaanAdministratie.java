@@ -4,6 +4,7 @@ import MaanProject.PerceelTypes.LandbouwPerceel;
 import MaanProject.PerceelTypes.MijnbouwPerceel;
 import MaanProject.PerceelTypes.WoonPerceel;
 import MaanProject.Service.*;
+import MaanProject.constants.Delfstof;
 import MaanProject.constants.DelfstofType;
 import MaanProject.constants.GewasType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -177,9 +178,9 @@ final public class MaanAdministratie {
                 .collect(Collectors.averagingInt(LandbouwPerceel::getJaarOpbrengst));
     }
 
-    public double gemiddeldeOpbrengstPerperceelPerDelfStof(DelfstofType delfstofType) {
+    public double gemiddeldeOpbrengstPerperceelPerDelfStof(Delfstof delfstof) {
         return mijnbouwPerceelService.findAll().stream()
-                .filter(mijnbouwPerceel -> mijnbouwPerceel.getDelfstof() == delfstofType)
+                .filter(mijnbouwPerceel -> mijnbouwPerceel.getDelfstof().equals(delfstof))
                 .collect(Collectors.averagingInt(MijnbouwPerceel::getJaarOpbrengst));
     }
 
@@ -208,7 +209,7 @@ final public class MaanAdministratie {
             System.out.println("Gemiddelde opbrengst van landbouw percelen die " + g + " verbouwen: " + gemiddeldeOpbrengstPerperceelPerGewas(g));
         }
 
-        for (DelfstofType d : DelfstofType.values()) {
+        for  (Delfstof d : DelfstofType.values()) {
             System.out.println("Gemiddelde opbrengst van mijnbouw percelen die " + d + " winnen: " + gemiddeldeOpbrengstPerperceelPerDelfStof(d));
         }
 

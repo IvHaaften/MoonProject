@@ -2,12 +2,13 @@ package MaanProject.PerceelTypes;
 
 import MaanProject.Inwoner;
 import MaanProject.Perceel;
-import MaanProject.constants.DelfstofType;
+import MaanProject.constants.Delfstof;
 import MaanProject.constants.Vergunning;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import java.awt.*;
 import java.util.Optional;
@@ -17,24 +18,25 @@ import java.util.Optional;
 @NoArgsConstructor()
 public class MijnbouwPerceel extends Perceel {
 
-    private DelfstofType delfstof;
+    @ManyToOne
+    private Delfstof delfstof;
     private int jaarOpbrengst;
 
     @OneToOne
-    private Vergunning<DelfstofType> vergunning;
+    private Vergunning<Delfstof> vergunning;
 
-    public MijnbouwPerceel(Polygon begrenzing, Inwoner eigenaar, DelfstofType delfstof, int jaarOpbrengst, Optional<Vergunning<DelfstofType>> optioneleVergunning) {
+    public MijnbouwPerceel(Polygon begrenzing, Inwoner eigenaar, Delfstof delfstof, int jaarOpbrengst, Optional<Vergunning<Delfstof>> optioneleVergunning) {
         super(begrenzing, eigenaar);
         this.delfstof = delfstof;
         this.jaarOpbrengst = jaarOpbrengst;
         setvergunning(optioneleVergunning);
     }
 
-    public DelfstofType getDelfstof() {
+    public Delfstof getDelfstof() {
         return delfstof;
     }
 
-    public void setDelfstof(DelfstofType delfstof) {
+    public void setDelfstof(Delfstof delfstof) {
         this.delfstof = delfstof;
     }
 
@@ -50,11 +52,11 @@ public class MijnbouwPerceel extends Perceel {
         return Optional.ofNullable(vergunning);
     }
 
-    public void setvergunning(Vergunning<DelfstofType> vergunning) {
+    public void setvergunning(Vergunning<Delfstof> vergunning) {
         this.vergunning = vergunning;
     }
 
-    public void setvergunning(Optional<Vergunning<DelfstofType>> optioneleVergunning) {
+    public void setvergunning(Optional<Vergunning<Delfstof>> optioneleVergunning) {
         vergunning = optioneleVergunning.orElse(null);
     }
 }
