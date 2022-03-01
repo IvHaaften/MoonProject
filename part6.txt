@@ -1,0 +1,12 @@
+Controleer bij het aanmaken van de delfstof of de waarden die niet null mogen zijn ook daadwerkelijk gevuld zijn.
+Is dit niet het geval gooi dan een eigen Exceptie.
+ 
+(Bouw een unittest om dit gedrag te testen.)
+ 
+Probeer het verschil tussen Unchecked en Checked exceptions.
+Beslis of je een exception ter plekke afvangt of doorgooit.
+ 
+ 
+Kijk naar de bestaande code en zoek uit waar je ExceptionHandling toe kunt voegen.
+Zoek hierbij in de lijst met OCP-exceptions welke het best van toepassing is.
+ 
