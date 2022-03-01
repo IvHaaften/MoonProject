@@ -4,13 +4,13 @@ import MaanProject.Inwoner;
 import MaanProject.Perceel;
 import MaanProject.constants.DelfstofType;
 import MaanProject.constants.Vergunning;
-import java.util.Optional;
-import javax.persistence.OneToOne;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import java.awt.*;
+import java.util.Optional;
 
 @Entity
 @DiscriminatorValue("MIJN")
@@ -20,15 +20,15 @@ public class MijnbouwPerceel extends Perceel {
     private DelfstofType delfstof;
     private int jaarOpbrengst;
 
-	@OneToOne
-    private Optional<Vergunning<DelfstofType>> optionalVergunning;
+    @OneToOne
+    private Vergunning<DelfstofType> vergunning;
 
-    public MijnbouwPerceel(Polygon begrenzing, Inwoner eigenaar, DelfstofType delfstof, int jaarOpbrengst, Optional<Vergunning<DelfstofType>> optionalVergunning) {
+    public MijnbouwPerceel(Polygon begrenzing, Inwoner eigenaar, DelfstofType delfstof, int jaarOpbrengst, Optional<Vergunning<DelfstofType>> optioneleVergunning) {
         super(begrenzing, eigenaar);
         this.delfstof = delfstof;
         this.jaarOpbrengst = jaarOpbrengst;
-		this.optionalVergunning = optionalVergunning;
-	}
+        setvergunning(optioneleVergunning);
+    }
 
     public DelfstofType getDelfstof() {
         return delfstof;
@@ -44,5 +44,17 @@ public class MijnbouwPerceel extends Perceel {
 
     public void setJaarOpbrengst(int jaarOpbrengst) {
         this.jaarOpbrengst = jaarOpbrengst;
+    }
+
+    public Optional getvergunning() {
+        return Optional.ofNullable(vergunning);
+    }
+
+    public void setvergunning(Vergunning<DelfstofType> vergunning) {
+        this.vergunning = vergunning;
+    }
+
+    public void setvergunning(Optional<Vergunning<DelfstofType>> optioneleVergunning) {
+        vergunning = optioneleVergunning.orElse(null);
     }
 }
