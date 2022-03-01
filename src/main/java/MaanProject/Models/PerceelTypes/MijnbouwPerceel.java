@@ -4,6 +4,7 @@ import MaanProject.Models.Inwoner;
 import MaanProject.Models.Perceel;
 import MaanProject.constants.Delfstof;
 import MaanProject.constants.Vergunning;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.DiscriminatorValue;
@@ -14,6 +15,7 @@ import java.awt.*;
 import java.util.Optional;
 
 @Entity
+@Getter
 @DiscriminatorValue("MIJN")
 @NoArgsConstructor()
 public class MijnbouwPerceel extends Perceel {
@@ -32,16 +34,8 @@ public class MijnbouwPerceel extends Perceel {
         setvergunning(optioneleVergunning);
     }
 
-    public Delfstof getDelfstof() {
-        return delfstof;
-    }
-
     public void setDelfstof(Delfstof delfstof) {
         this.delfstof = delfstof;
-    }
-
-    public int getJaarOpbrengst() {
-        return jaarOpbrengst;
     }
 
     public void setJaarOpbrengst(int jaarOpbrengst) {
