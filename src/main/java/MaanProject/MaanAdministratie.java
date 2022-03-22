@@ -1,15 +1,16 @@
 package MaanProject;
 
-import MaanProject.PerceelTypes.LandbouwPerceel;
-import MaanProject.PerceelTypes.MijnbouwPerceel;
-import MaanProject.PerceelTypes.WoonPerceel;
+import MaanProject.Models.Perceel;
+import MaanProject.Models.PerceelTypes.LandbouwPerceel;
+import MaanProject.Models.PerceelTypes.MijnbouwPerceel;
+import MaanProject.Models.PerceelTypes.WoonPerceel;
 import MaanProject.Service.*;
+import MaanProject.constants.Delfstof;
 import MaanProject.constants.DelfstofType;
 import MaanProject.constants.GewasType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,7 +37,7 @@ final public class MaanAdministratie {
     //Percelen die vaker dan gemiddeld zijn verkocht
     public List<Perceel> getPercelenVakerDanGemiddeldVerkocht(LocalDate beginDatum, LocalDate eindDatum) {
         var allePercelen = perceelService.findAll();
-        if (allePercelen.size()==0){
+        if (allePercelen.size() == 0) {
             return null;
         }
         var alleTransacties = transactieService.findByDateRange(beginDatum, eindDatum);
@@ -51,7 +52,7 @@ final public class MaanAdministratie {
     //Percelen die veel vaker dan gemiddeld zijn verkocht
     public List<Perceel> getPercelenVeelVakerDanGemiddeldVerkocht(LocalDate beginDatum, LocalDate eindDatum) {
         var allePercelen = perceelService.findAll();
-        if (allePercelen.size()==0){
+        if (allePercelen.size() == 0) {
             return null;
         }
         var alleTransacties = transactieService.findByDateRange(beginDatum, eindDatum);
@@ -66,13 +67,13 @@ final public class MaanAdministratie {
     //Percelen die minder gemiddeld zijn verkocht
     public List<Perceel> getPercelenMinderDanGemiddeldVerkocht(LocalDate beginDatum, LocalDate eindDatum) {
         var allePercelen = perceelService.findAll();
-        if (allePercelen.size()==0){
+        if (allePercelen.size() == 0) {
             return null;
         }
         var alleTransacties = transactieService.findByDateRange(beginDatum, eindDatum);
         var gemiddelde = alleTransacties.size() / allePercelen.size();
         return allePercelen.stream()
-                .filter(perceel -> perceel.transacties.stream()
+                .filter(perceel -> perceel.getTransacties().stream()
                         .filter(transactie -> !transactie.getDatum().isBefore(beginDatum) &&
                                 !transactie.getDatum().isAfter(eindDatum))
                         .count() < gemiddelde)
@@ -82,7 +83,7 @@ final public class MaanAdministratie {
     //Percelen die veel minder gemiddeld zijn verkocht
     public List<Perceel> getPercelenVeelMinderDanGemiddeldVerkocht(LocalDate beginDatum, LocalDate eindDatum) {
         var allePercelen = perceelService.findAll();
-        if (allePercelen.size()==0){
+        if (allePercelen.size() == 0) {
             return null;
         }
         var alleTransacties = transactieService.findByDateRange(beginDatum, eindDatum);
@@ -97,7 +98,7 @@ final public class MaanAdministratie {
     //Percelen die meer/minder delfstoffen/gewassen opleveren dan gemiddeld
     public List<Perceel> getPerceelMetMinderDelfstoffenDanGemiddeld() {
         var mijnbouwPercelen = mijnbouwPerceelService.findAll();
-        if (mijnbouwPercelen.size()==0){
+        if (mijnbouwPercelen.size() == 0) {
             return null;
         }
         var gemiddelde = mijnbouwPercelen.stream()
@@ -109,7 +110,7 @@ final public class MaanAdministratie {
 
     public List<Perceel> getPerceelMetMeerDelfstoffenDanGemiddeld() {
         var mijnbouwPercelen = mijnbouwPerceelService.findAll();
-        if (mijnbouwPercelen.size()==0){
+        if (mijnbouwPercelen.size() == 0) {
             return null;
         }
         var gemiddelde = mijnbouwPercelen.stream()
@@ -122,7 +123,7 @@ final public class MaanAdministratie {
     //Percelen die meer/minder gewassen opleveren dan gemiddeld
     public List<Perceel> getPerceelMetMeerGewassenDanGemiddeld() {
         var landbouwPercelen = landbouwPerceelService.findAll();
-        if (landbouwPercelen.size()==0){
+        if (landbouwPercelen.size() == 0) {
             return null;
         }
         var gemiddelde = landbouwPercelen.stream()
@@ -134,7 +135,7 @@ final public class MaanAdministratie {
 
     public List<Perceel> getPerceelMetMinderGewassenDanGemiddeld() {
         var landbouwPercelen = landbouwPerceelService.findAll();
-        if (landbouwPercelen.size()==0){
+        if (landbouwPercelen.size() == 0) {
             return null;
         }
         var gemiddelde = landbouwPercelen.stream()
@@ -154,7 +155,7 @@ final public class MaanAdministratie {
 
     public long aantalVerkochtePercelenPerPeriode(LocalDate beginDatum, LocalDate eindDatum) {
         var allePercelen = perceelService.findAll();
-        if (allePercelen.size()==0){
+        if (allePercelen.size() == 0) {
             return 0;
         }
         return allePercelen.stream()
@@ -178,16 +179,16 @@ final public class MaanAdministratie {
                 .collect(Collectors.averagingInt(LandbouwPerceel::getJaarOpbrengst));
     }
 
-    public double gemiddeldeOpbrengstPerperceelPerDelfStof(DelfstofType delfstofType) {
+    public double gemiddeldeOpbrengstPerperceelPerDelfStof(Delfstof delfstof) {
         return mijnbouwPerceelService.findAll().stream()
-                .filter(mijnbouwPerceel -> mijnbouwPerceel.getDelfstof() == delfstofType)
+                .filter(mijnbouwPerceel -> mijnbouwPerceel.getDelfstof().equals(delfstof))
                 .collect(Collectors.averagingInt(MijnbouwPerceel::getJaarOpbrengst));
     }
 
-    public long aantalInwonersOuderDan30(WoonPerceel woonPerceel){
-        return woonPerceel.getInwoners().stream().filter(inwoner -> inwoner.getLeeftijdInJaren()>30).count();
+    public long aantalInwonersOuderDan30(WoonPerceel woonPerceel) {
+        return woonPerceel.getInwoners().stream().filter(inwoner -> inwoner.getLeeftijdInJaren() > 30).count();
     }
-    
+
     public void maakRapportage(LocalDate beginDatum, LocalDate eindDatum) {
         System.out.println("Maan rapportage voor de periode: " + beginDatum + " - " + eindDatum);
         System.out.println("Percelen vaker dan gemiddeld verkocht: " + getPercelenVakerDanGemiddeldVerkocht(beginDatum, eindDatum));
@@ -201,22 +202,22 @@ final public class MaanAdministratie {
         System.out.println("Percelen lagere gewas opbrengst dan gemiddeld: " + getPerceelMetMinderGewassenDanGemiddeld());
         System.out.println("Percelen hogere gewas opbrengst dan gemiddeld: " + getPerceelMetMeerGewassenDanGemiddeld());
 
-        System.out.println("Totaal aantal verkochte maan percelen deze periode: "+ aantalVerkochtePercelenPerPeriode(beginDatum, eindDatum));
-        System.out.println("Totaal aantal delfstof percelen: "+ aantalMijnbouwPercelen());
-        System.out.println("Totaal aantal gewas percelen: "+ aantalLandbouwPercelen());
+        System.out.println("Totaal aantal verkochte maan percelen deze periode: " + aantalVerkochtePercelenPerPeriode(beginDatum, eindDatum));
+        System.out.println("Totaal aantal delfstof percelen: " + aantalMijnbouwPercelen());
+        System.out.println("Totaal aantal gewas percelen: " + aantalLandbouwPercelen());
 
-        for(GewasType g : GewasType.values()) {
+        for (GewasType g : GewasType.values()) {
             System.out.println("Gemiddelde opbrengst van landbouw percelen die " + g + " verbouwen: " + gemiddeldeOpbrengstPerperceelPerGewas(g));
         }
 
-        for(DelfstofType d : DelfstofType.values()) {
+        for (Delfstof d : DelfstofType.values()) {
             System.out.println("Gemiddelde opbrengst van mijnbouw percelen die " + d + " winnen: " + gemiddeldeOpbrengstPerperceelPerDelfStof(d));
         }
 
         System.out.println("Aantal inwoners ouder dan 30 per woonperceel:");
         System.out.println("ID | aantal");
         var alleWoonPercelen = woonPerceelService.findAll();
-        for (WoonPerceel woonPerceel : alleWoonPercelen){
+        for (WoonPerceel woonPerceel : alleWoonPercelen) {
             System.out.println(woonPerceel.getId() + " | " + aantalInwonersOuderDan30(woonPerceel));
         }
     }

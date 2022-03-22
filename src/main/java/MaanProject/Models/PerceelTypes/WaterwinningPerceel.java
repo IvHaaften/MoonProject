@@ -1,13 +1,12 @@
-package MaanProject.PerceelTypes;
+package MaanProject.Models.PerceelTypes;
 
-import MaanProject.Inwoner;
-import MaanProject.Perceel;
+import MaanProject.Models.Inwoner;
+import MaanProject.Models.Perceel;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import java.awt.*;
-import java.util.List;
-import java.util.Map;
 
 @Entity
 @DiscriminatorValue("WATER")

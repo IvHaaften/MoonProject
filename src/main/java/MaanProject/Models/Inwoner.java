@@ -1,4 +1,4 @@
-package MaanProject;
+package MaanProject.Models;
 
 
 import lombok.NoArgsConstructor;
@@ -24,6 +24,13 @@ public class Inwoner {
     private String naam;
 
     private LocalDate geboortedatum;
+
+    @Override
+    public String toString() {
+        return "Inwoner{" +
+                "naam='" + naam + '\'' +
+                '}';
+    }
 
     public Inwoner(String naam, LocalDate geboortedatum) {
         this.naam = naam;
