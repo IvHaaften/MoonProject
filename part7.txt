@@ -1,0 +1,18 @@
+Opdracht week 7:
+Bij het inboeken van het transport van kratten is er plaats voor maximaal 20 kratten per wagon.
+
+Het inboeken kan door meerdere personen tegelijk gedaan worden.
+
+Zorg ervoor dat de wagons niet overboekt worden.
+
+
+Dit is te testen in een unittest waarbij met meerdere threads tegelijk kratten ingeboekt worden.
+
+Eventueel bouw je een wachttijd in bij het inboeken om de kans op dubbel boeken te vergemakkelijken.
+
+
+Maak een lijst met delfstoffen, probeer in de ene thread alle namen van delfstoffen om te zetten naar uppercase en in de andere thread naar lowercase.
+
+Laat deze tegelijk lopen.
+
+Laat bijvoorbeeld de ene thread van achter naar voren door de lijst lopen en in de andere thread andersom.
