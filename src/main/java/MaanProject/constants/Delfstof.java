@@ -2,6 +2,7 @@ package MaanProject.constants;
 
 import MaanProject.Exceptions.DelfstofException;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.Hibernate;
@@ -19,6 +20,7 @@ import java.util.Objects;
 @NoArgsConstructor
 // @AllArgsConstructor
 @ToString
+@Getter
 public class Delfstof {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +30,7 @@ public class Delfstof {
     private double stofdichtheid; //in kg/m3
     private boolean radioactief;
 
-    public Delfstof(final Integer id, final String elementnaam, final int elementnummer, final double stofdichtheid, final boolean radioactief) {
+    public Delfstof(Integer id, String elementnaam, int elementnummer, double stofdichtheid, boolean radioactief) {
         if (elementnaam == null) {
             throw new DelfstofException();
         }

@@ -14,10 +14,11 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Vracht implements Comparable<Vracht>{
+public class Vracht implements Comparable<Vracht> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
     private Integer id;
 
     @Getter
@@ -31,9 +32,8 @@ public class Vracht implements Comparable<Vracht>{
     @Getter
     private int inhoud;
 
-	@Override
-	public int compareTo(Vracht vracht)
-	{
-		return Boolean.compare(bederfelijk, vracht.bederfelijk);
-	}
+    @Override
+    public int compareTo(Vracht vracht) {
+        return Boolean.compare(bederfelijk, vracht.bederfelijk);
+    }
 }

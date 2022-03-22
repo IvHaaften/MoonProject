@@ -13,6 +13,8 @@ import java.util.List;
 @AllArgsConstructor
 public class Vervoersmiddel {
 
+    public static final int MAXIMAAL_AANTAL_KRATTEN = 20;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -22,7 +24,7 @@ public class Vervoersmiddel {
     @Getter
     private int vrachtcapaciteit;
     @Getter
-    private int passagiercapaciteit;
+    private int passagierscapaciteit;
 
     @Getter
     @OneToMany(mappedBy = "vervoersmiddel", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
