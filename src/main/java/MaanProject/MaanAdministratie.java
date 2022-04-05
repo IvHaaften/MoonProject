@@ -11,12 +11,13 @@ import MaanProject.constants.GewasType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-final public class MaanAdministratie {
+final public class MaanAdministratie implements Serializable {
     PerceelService perceelService;
     TransactieService transactieService;
     MijnbouwPerceelService mijnbouwPerceelService;
