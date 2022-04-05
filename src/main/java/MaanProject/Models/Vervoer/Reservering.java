@@ -1,18 +1,25 @@
 package MaanProject.Models.Vervoer;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import MaanProject.Models.Inwoner;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
-public class Reservering
-{
-	//record ID
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+public class Reservering {
+    //record ID
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @ManyToOne
+    private Rit rit;
+
+    @ManyToOne
+    private Inwoner inwoner;
+
+    @ManyToOne
+    private Zitplaats zitplaats;
 
 }

@@ -24,7 +24,8 @@ public class Vervoersmiddel {
     @Getter
     private int vrachtcapaciteit;
     @Getter
-    private int passagierscapaciteit;
+    @OneToMany
+    private List<Zitplaats> zitplaatsen;
 
     @Getter
     @OneToMany(mappedBy = "vervoersmiddel", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

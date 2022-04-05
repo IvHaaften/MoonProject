@@ -1,16 +1,16 @@
 package MaanProject.Models.Vervoer;
 
-import MaanProject.Models.Inwoner;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
-import java.util.HashMap;
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 public class Rit {
     //record ID
     @Id
@@ -20,12 +20,12 @@ public class Rit {
     @ManyToOne
     private Vervoersmiddel vervoersmiddel;
 
-    //@OneToMany(mappedBy = "rit", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private HashMap<Zitplaats, Inwoner> passagiersLijst;
+    @OneToMany
+    private List<Reservering> reserveringen;
 
     @Getter
-    //@OneToMany(mappedBy = "rit", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private CopyOnWriteArrayList<Vracht> vrachtLijst;
+    @OneToMany
+    private List<Vracht> vrachtLijst;
 
     private ZonedDateTime vertrektijd;
 
@@ -33,15 +33,6 @@ public class Rit {
     private Station beginStation;
     @ManyToOne
     private Station eindStation;
-
-    public Rit(Vervoersmiddel vervoersmiddel, HashMap<Zitplaats, Inwoner> passagiersLijst, CopyOnWriteArrayList<Vracht> vrachtLijst, ZonedDateTime vertrektijd, Station beginStation, Station eindStation) {
-        this.vervoersmiddel = vervoersmiddel;
-        this.passagiersLijst = passagiersLijst;
-        this.vrachtLijst = vrachtLijst;
-        this.vertrektijd = vertrektijd;
-        this.beginStation = beginStation;
-        this.eindStation = eindStation;
-    }
 
     synchronized public void plaatsVracht(Vracht vracht) {
         if (vrachtLijst.stream()
