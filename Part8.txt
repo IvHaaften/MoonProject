@@ -1,0 +1,13 @@
+Write the transport information to a file, so who or what moved from where to where and when
+
+Have another method read this file and monitor this output for any products that should have a
+license but didn’t have (a valid) one. Write these to a separate file so the moon police knows what
+illegal transportations took place
+
+Make your moon administration serializable
+
+Ask the user for input on this administration
+
+Upon ending the console app, write it to a file
+
+Open it when the user later wants to continue a previous session
