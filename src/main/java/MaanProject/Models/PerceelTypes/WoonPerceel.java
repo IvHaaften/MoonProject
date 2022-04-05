@@ -3,6 +3,7 @@ package MaanProject.Models.PerceelTypes;
 import MaanProject.Exceptions.MaxInwonerException;
 import MaanProject.Models.Inwoner;
 import MaanProject.Models.Perceel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.DiscriminatorValue;
@@ -14,6 +15,7 @@ import java.util.List;
 @Entity
 @DiscriminatorValue("WOON")
 @NoArgsConstructor()
+@Getter
 public class WoonPerceel extends Perceel {
 
     private int maxInwoners;

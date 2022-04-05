@@ -226,13 +226,40 @@ final public class MaanAdministratie implements Serializable {
         }
 
         var alleRitten = ritService.findAll();
-        try (ObjectOutputStream  bw = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(new File("src/main/resources/rittenlijst.txt"))))) {
-            for (Rit rit : alleRitten ) {
+        try (ObjectOutputStream bw = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(new File("src/main/resources/rittenlijst.txt"))))) {
+            for (Rit rit : alleRitten) {
                 bw.writeObject(rit);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        try (ObjectInputStream bw = new ObjectInputStream(new BufferedInputStream(new FileInputStream(new File("src/main/resources/rittenlijst.txt"))));
+        BufferedWriter illegaal = new BufferedWriter(new FileWriter(new File("src/main/resources/illegaal.txt")))) {
+
+            while (true) {
+                Rit rit = (Rit) bw.readObject();
+                var perceel = rit.getBeginStation().getPerceel();
+                if (perceel instanceof LandbouwPerceel) {
+                    if (((LandbouwPerceel) perceel).getvergunning().isEmpty() && ((LandbouwPerceel) perceel).getGewas().isOpiaat())  {
+                        //regel naar bestand
+                        illegaal.write("illegaal opiaat perceelId " + perceel.getId());
+                    }
+                } else if (perceel instanceof MijnbouwPerceel) {
+                    if (((MijnbouwPerceel) perceel).getvergunning().isEmpty() && ((MijnbouwPerceel) perceel).getDelfstof().isRadioactief()) {
+                        //regel naar bestand
+                        illegaal.write("illegale radioactieve delfstof perceelId " + perceel.getId());
+                    }
+
+                }
+                System.out.println("rit uit bestand gehaald ");
+            }
+        } catch (EOFException e) {
+            System.out.println("einde bestand");
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }

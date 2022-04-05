@@ -3,6 +3,7 @@ package MaanProject.Models.Vervoer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,6 +13,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Rit implements Serializable {
     //record ID
     @Id
@@ -21,16 +23,17 @@ public class Rit implements Serializable {
     @ManyToOne
     private Vervoersmiddel vervoersmiddel;
 
-    @OneToMany(mappedBy = "rit", cascade = CascadeType.ALL)
+    @OneToMany
     private List<Reservering> reserveringen;
 
     @Getter
-    @OneToMany(mappedBy = "rit", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany
     private List<Vracht> vrachtLijst;
 
     private ZonedDateTime vertrektijd;
 
     @ManyToOne
+    @Getter
     private Station beginStation;
     @ManyToOne
     private Station eindStation;
@@ -54,4 +57,15 @@ public class Rit implements Serializable {
         vrachtLijst.sort(Vracht::compareTo);
     }
 
+    @Override
+    public String toString() {
+        return "Rit{" +
+                "id=" + id +
+                ", vervoersmiddel=" + vervoersmiddel +
+                ", vrachtLijst=" + vrachtLijst +
+                ", vertrektijd=" + vertrektijd +
+                ", beginStation=" + beginStation +
+                ", eindStation=" + eindStation +
+                '}';
+    }
 }

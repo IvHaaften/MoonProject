@@ -2,6 +2,7 @@ package MaanProject.Models.PerceelTypes;
 
 import MaanProject.Models.Inwoner;
 import MaanProject.Models.Perceel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.DiscriminatorValue;
@@ -11,6 +12,7 @@ import java.awt.*;
 @Entity
 @DiscriminatorValue("WATER")
 @NoArgsConstructor()
+@Getter
 public class WaterwinningPerceel extends Perceel {
 
     private int jaarOpbrengst;

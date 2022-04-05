@@ -1,6 +1,7 @@
 package MaanProject;
 
 import MaanProject.Models.Inwoner;
+import MaanProject.Models.Perceel;
 import MaanProject.Models.PerceelTypes.LandbouwPerceel;
 import MaanProject.Models.PerceelTypes.MijnbouwPerceel;
 import MaanProject.Models.PerceelTypes.WoonPerceel;
@@ -72,15 +73,17 @@ public class LoadDatabase {
             log.info("Preloading " + mijnbouwPerceelService.save(new MijnbouwPerceel(new Polygon(), john, DelfstofType.IRIDIUM, 60, Optional.of(irridiumVergunning))));
 
             log.info("Preloading " + landbouwPerceelService.save(new LandbouwPerceel(new Polygon(), jean, GewasType.MAANZAAD, 23, Optional.of(maanzaadVergunning))));
-            log.info("Preloading " + landbouwPerceelService.save(new LandbouwPerceel(new Polygon(), eva, GewasType.MAANZAAD, 52, Optional.empty())));
+            Perceel perceel3 = landbouwPerceelService.save(new LandbouwPerceel(new Polygon(), eva, GewasType.MAANZAAD, 52, Optional.empty()));
             log.info("Preloading " + landbouwPerceelService.save(new LandbouwPerceel(new Polygon(), kovacs, GewasType.CANNABIS, 233, Optional.of(cannabisVergunning))));
 
             log.info("Preloading ritten etc.");
             Station station1 = stationService.save(new Station(perceel1, "Nijmegen"));
             Station station2 = stationService.save(new Station(perceel2, "Arnhem"));
-            Vervoersmiddel trein = vervoersmiddelService.save(new Vervoersmiddel(1, VervoerType.MONORAIL, 10, new ArrayList()));
+            Station station3 = stationService.save(new Station(perceel3, "Rillandbath"));
+            Vervoersmiddel trein = vervoersmiddelService.save(new Vervoersmiddel(1, VervoerType.MONORAIL, 10, null));
             Vracht vracht1 = vrachtService.save(new Vracht(1, KratFormaat.MEDIUM, AggregatieToestand.GAS, true, 1, 100));
             Rit rit1 = ritService.save(new Rit(1, trein, null, List.of(vracht1), ZonedDateTime.now(), station1, station2));
+            Rit rit2 = ritService.save(new Rit(1, trein, null, List.of(vracht1), ZonedDateTime.now(), station3, station2));
 
         };
     }

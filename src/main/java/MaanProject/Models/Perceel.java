@@ -3,6 +3,7 @@ package MaanProject.Models;
 import MaanProject.Models.Vervoer.Station;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.awt.*;
@@ -14,6 +15,7 @@ import java.util.List;
 @DiscriminatorColumn(name = "PERCEELTYPE")
 @NoArgsConstructor
 @Getter
+@ToString
 public class Perceel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

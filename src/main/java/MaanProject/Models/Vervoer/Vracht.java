@@ -5,6 +5,7 @@ import MaanProject.constants.KratFormaat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +16,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@ToString
 public class Vracht implements Comparable<Vracht>, Serializable {
 
     @Id

@@ -4,6 +4,7 @@ import MaanProject.Models.Inwoner;
 import MaanProject.Models.Perceel;
 import MaanProject.constants.GewasType;
 import MaanProject.constants.Vergunning;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.DiscriminatorValue;
@@ -15,6 +16,7 @@ import java.util.Optional;
 @Entity
 @DiscriminatorValue("LANDBOUW")
 @NoArgsConstructor()
+@Getter
 public class LandbouwPerceel extends Perceel {
 
     private GewasType gewas;

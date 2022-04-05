@@ -2,6 +2,7 @@ package MaanProject.Models.PerceelTypes;
 
 import MaanProject.Models.Inwoner;
 import MaanProject.Models.Perceel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.DiscriminatorValue;
@@ -11,6 +12,7 @@ import java.awt.*;
 @Entity
 @DiscriminatorValue("LANCEER")
 @NoArgsConstructor()
+@Getter
 public class LanceerBasis extends Perceel {
 
     private int maximaleRaketGrootte;

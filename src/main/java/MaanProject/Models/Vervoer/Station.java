@@ -2,12 +2,14 @@ package MaanProject.Models.Vervoer;
 
 import MaanProject.Models.Perceel;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @NoArgsConstructor
+@ToString
 public class Station implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
