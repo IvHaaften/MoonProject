@@ -6,12 +6,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Vervoersmiddel {
+public class Vervoersmiddel implements Serializable {
 
     public static final int MAXIMAAL_AANTAL_KRATTEN = 20;
 
@@ -26,8 +27,4 @@ public class Vervoersmiddel {
     @Getter
     @OneToMany
     private List<Zitplaats> zitplaatsen;
-
-    @Getter
-    @OneToMany(mappedBy = "vervoersmiddel", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Rit> ritten;
 }

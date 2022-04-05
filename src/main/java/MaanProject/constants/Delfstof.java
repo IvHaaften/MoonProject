@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Builder //hierdoor wordt onder water een DelfstofBuilder aangemaakt door Lombok (vgl getter en setter)
@@ -21,7 +22,7 @@ import java.util.Objects;
 // @AllArgsConstructor
 @ToString
 @Getter
-public class Delfstof {
+public class Delfstof implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

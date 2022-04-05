@@ -10,11 +10,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Vracht implements Comparable<Vracht> {
+public class Vracht implements Comparable<Vracht>, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

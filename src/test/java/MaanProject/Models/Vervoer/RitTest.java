@@ -21,7 +21,7 @@ class RitTest {
 
     @BeforeEach
     void setUp() {
-        rit = new Rit(1, new Vervoersmiddel(4, VervoerType.MONORAIL, 200, null, null), null, new CopyOnWriteArrayList<>(), ZonedDateTime.now(), new Station(), new Station());
+        rit = new Rit(1, new Vervoersmiddel(4, VervoerType.MONORAIL, 200, null), null, new CopyOnWriteArrayList<>(), ZonedDateTime.now(), new Station(), new Station());
     }
 
     @Test

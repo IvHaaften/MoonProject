@@ -5,13 +5,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.List;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Rit {
+public class Rit implements Serializable {
     //record ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

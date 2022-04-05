@@ -4,6 +4,7 @@ import MaanProject.Models.Perceel;
 import MaanProject.Models.PerceelTypes.LandbouwPerceel;
 import MaanProject.Models.PerceelTypes.MijnbouwPerceel;
 import MaanProject.Models.PerceelTypes.WoonPerceel;
+import MaanProject.Models.Vervoer.Rit;
 import MaanProject.Service.*;
 import MaanProject.constants.Delfstof;
 import MaanProject.constants.DelfstofType;
@@ -11,7 +12,7 @@ import MaanProject.constants.GewasType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.Serializable;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,16 +24,18 @@ final public class MaanAdministratie implements Serializable {
     MijnbouwPerceelService mijnbouwPerceelService;
     LandbouwPerceelService landbouwPerceelService;
     WoonperceelService woonPerceelService;
+    RitService ritService;
 
     @Autowired
     public MaanAdministratie(PerceelService perceelService, TransactieService transactieService,
                              MijnbouwPerceelService mijnbouwPerceelService, LandbouwPerceelService landbouwPerceelService,
-                             WoonperceelService woonPerceelService) {
+                             WoonperceelService woonPerceelService, RitService ritService) {
         this.perceelService = perceelService;
         this.transactieService = transactieService;
         this.mijnbouwPerceelService = mijnbouwPerceelService;
         this.landbouwPerceelService = landbouwPerceelService;
         this.woonPerceelService = woonPerceelService;
+        this.ritService = ritService;
     }
 
     //Percelen die vaker dan gemiddeld zijn verkocht
@@ -220,6 +223,15 @@ final public class MaanAdministratie implements Serializable {
         var alleWoonPercelen = woonPerceelService.findAll();
         for (WoonPerceel woonPerceel : alleWoonPercelen) {
             System.out.println(woonPerceel.getId() + " | " + aantalInwonersOuderDan30(woonPerceel));
+        }
+
+        var alleRitten = ritService.findAll();
+        try (ObjectOutputStream  bw = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(new File("src/main/resources/rittenlijst.txt"))))) {
+            for (Rit rit : alleRitten ) {
+                bw.writeObject(rit);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

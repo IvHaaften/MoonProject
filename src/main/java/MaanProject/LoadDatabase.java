@@ -4,11 +4,12 @@ import MaanProject.Models.Inwoner;
 import MaanProject.Models.PerceelTypes.LandbouwPerceel;
 import MaanProject.Models.PerceelTypes.MijnbouwPerceel;
 import MaanProject.Models.PerceelTypes.WoonPerceel;
+import MaanProject.Models.Vervoer.Rit;
+import MaanProject.Models.Vervoer.Station;
+import MaanProject.Models.Vervoer.Vervoersmiddel;
+import MaanProject.Models.Vervoer.Vracht;
 import MaanProject.Service.*;
-import MaanProject.constants.Delfstof;
-import MaanProject.constants.DelfstofType;
-import MaanProject.constants.GewasType;
-import MaanProject.constants.Vergunning;
+import MaanProject.constants.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -16,6 +17,9 @@ import org.springframework.context.annotation.Configuration;
 
 import java.awt.*;
 import java.time.LocalDate;
+import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +31,8 @@ public class LoadDatabase {
     @Bean
     CommandLineRunner initDatabase(InwonerService inwonerService, WoonperceelService woonperceelService, MijnbouwPerceelService mijnbouwPerceelService,
                                    LandbouwPerceelService landbouwPerceelService, DelfstofVergunningService delfstofVergunningService,
-                                   GewasVergunningService gewasVergunningService, DelfstofService delfstofService) {
+                                   GewasVergunningService gewasVergunningService, DelfstofService delfstofService, RitService ritService,
+                                   StationService stationService, VervoersmiddelService vervoersmiddelService, VrachtService vrachtService) {
         return args -> {
             log.info("Preloading inwoners");
             Inwoner jan = inwonerService.save(new Inwoner("Jan Jansen", LocalDate.of(1949, 1, 1)));
@@ -48,10 +53,10 @@ public class LoadDatabase {
             Vergunning<GewasType> maanzaadVergunning = gewasVergunningService.save(new Vergunning<>(jan, GewasType.MAANZAAD, LocalDate.now().minusMonths(5), LocalDate.now().plusMonths(3)));
             Vergunning<GewasType> cannabisVergunning = gewasVergunningService.save(new Vergunning<>(jan, GewasType.CANNABIS, LocalDate.now().minusMonths(11), LocalDate.now().plusMonths(5)));
 
-            log.info("Preloading " + woonperceelService.save(new WoonPerceel(new Polygon(), jan, 4, List.of(jan, john, jean, max))));
+            var perceel1 = woonperceelService.save(new WoonPerceel(new Polygon(), jan, 4, List.of(jan, john, jean, max)));
             log.info("Preloading " + woonperceelService.save(new WoonPerceel(new Polygon(), eva, 4, List.of(eva, navn, kovacs))));
 
-            log.info("Preloading " + mijnbouwPerceelService.save(new MijnbouwPerceel(new Polygon(), jan, DelfstofType.GOUD, 100, Optional.empty())));
+            var perceel2 = mijnbouwPerceelService.save(new MijnbouwPerceel(new Polygon(), jan, DelfstofType.GOUD, 100, Optional.empty()));
 
             log.info("Preloading " + mijnbouwPerceelService.save(new MijnbouwPerceel(new Polygon(), jan, DelfstofType.HELIUM3, 5, Optional.empty())));
             log.info("Preloading " + mijnbouwPerceelService.save(new MijnbouwPerceel(new Polygon(), jan, DelfstofType.HELIUM3, 15, Optional.empty())));
@@ -69,6 +74,14 @@ public class LoadDatabase {
             log.info("Preloading " + landbouwPerceelService.save(new LandbouwPerceel(new Polygon(), jean, GewasType.MAANZAAD, 23, Optional.of(maanzaadVergunning))));
             log.info("Preloading " + landbouwPerceelService.save(new LandbouwPerceel(new Polygon(), eva, GewasType.MAANZAAD, 52, Optional.empty())));
             log.info("Preloading " + landbouwPerceelService.save(new LandbouwPerceel(new Polygon(), kovacs, GewasType.CANNABIS, 233, Optional.of(cannabisVergunning))));
+
+            log.info("Preloading ritten etc.");
+            Station station1 = stationService.save(new Station(perceel1, "Nijmegen"));
+            Station station2 = stationService.save(new Station(perceel2, "Arnhem"));
+            Vervoersmiddel trein = vervoersmiddelService.save(new Vervoersmiddel(1, VervoerType.MONORAIL, 10, new ArrayList()));
+            Vracht vracht1 = vrachtService.save(new Vracht(1, KratFormaat.MEDIUM, AggregatieToestand.GAS, true, 1, 100));
+            Rit rit1 = ritService.save(new Rit(1, trein, null, List.of(vracht1), ZonedDateTime.now(), station1, station2));
+
         };
     }
 }
