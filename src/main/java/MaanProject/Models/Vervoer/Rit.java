@@ -21,11 +21,11 @@ public class Rit implements Serializable {
     @ManyToOne
     private Vervoersmiddel vervoersmiddel;
 
-    @OneToMany
+    @OneToMany(mappedBy = "rit", cascade = CascadeType.ALL)
     private List<Reservering> reserveringen;
 
     @Getter
-    @OneToMany
+    @OneToMany(mappedBy = "rit", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Vracht> vrachtLijst;
 
     private ZonedDateTime vertrektijd;
