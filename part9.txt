@@ -1,0 +1,6 @@
+Continue working on the IO exercise, use your new knowledge
+
+Create a separate folder for every unique person (unique name is fine) in which you store all movements of that person
+
+Every shipping of goods should be stored in a folder of the owner
+
