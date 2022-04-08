@@ -18,6 +18,7 @@ public class Rit implements Serializable {
     //record ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
     private Integer id;
 
     @ManyToOne
@@ -62,7 +63,7 @@ public class Rit implements Serializable {
         return "Rit{" +
                 "id=" + id +
                 ", vervoersmiddel=" + vervoersmiddel +
-                ", vrachtLijst=" + vrachtLijst +
+//                ", vrachtLijst=" + vrachtLijst +
                 ", vertrektijd=" + vertrektijd +
                 ", beginStation=" + beginStation +
                 ", eindStation=" + eindStation +

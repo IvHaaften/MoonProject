@@ -13,12 +13,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
 final public class MaanAdministratie implements Serializable {
+    public static final String EXPORT_PAD = "src/main/resources";
     PerceelService perceelService;
     TransactieService transactieService;
     MijnbouwPerceelService mijnbouwPerceelService;
@@ -228,7 +231,7 @@ final public class MaanAdministratie implements Serializable {
         }
 
         var alleRitten = ritService.findAll();
-        try (ObjectOutputStream bw = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(new File("src/main/resources/rittenlijst.txt"))))) {
+        try (ObjectOutputStream bw = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(new File(EXPORT_PAD + "/rittenlijst.txt"))))) {
             for (Rit rit : alleRitten) {
                 bw.writeObject(rit);
             }
@@ -236,8 +239,8 @@ final public class MaanAdministratie implements Serializable {
             e.printStackTrace();
         }
 
-        try (ObjectInputStream bw = new ObjectInputStream(new BufferedInputStream(new FileInputStream(new File("src/main/resources/rittenlijst.txt"))));
-             BufferedWriter illegaal = new BufferedWriter(new FileWriter(new File("src/main/resources/illegaal.txt")))) {
+        try (ObjectInputStream bw = new ObjectInputStream(new BufferedInputStream(new FileInputStream(new File(EXPORT_PAD + "/rittenlijst.txt"))));
+             BufferedWriter illegaal = new BufferedWriter(new FileWriter(new File(EXPORT_PAD + "/illegaal.txt")))) {
 
             while (true) {
                 Rit rit = (Rit) bw.readObject();
@@ -262,6 +265,20 @@ final public class MaanAdministratie implements Serializable {
             e.printStackTrace();
         }
 
+        var inwoners = inwonerService.findAll();
+        inwoners.forEach(inwoner -> Path.of(EXPORT_PAD, "inwoners", inwoner.getNaam().replace(" ", "_")).toFile().mkdirs());
+        alleRitten.forEach(rit -> {
+            Path p = Path.of(EXPORT_PAD, "inwoners",
+                rit.getBeginStation().getPerceel().getEigenaar().getNaam().replace(" ", "_"),rit.getId() + ".txt");
+            p.toFile().getParentFile().mkdirs();
+            try (var nbw = Files.newBufferedWriter(p)) {
+                p.toFile().createNewFile();
+                nbw.write(rit.toString());
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
     }
 

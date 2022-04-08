@@ -82,8 +82,11 @@ public class LoadDatabase {
             Station station3 = stationService.save(new Station(perceel3, "Rillandbath"));
             Vervoersmiddel trein = vervoersmiddelService.save(new Vervoersmiddel(1, VervoerType.MONORAIL, 10, null));
             Vracht vracht1 = vrachtService.save(new Vracht(1, KratFormaat.MEDIUM, AggregatieToestand.GAS, true, 1, 100));
+            Vracht vracht2 = vrachtService.save(new Vracht(2, KratFormaat.MEDIUM, AggregatieToestand.VLOEIBAAR, true, 10, 100));
+            Vracht vracht3 = vrachtService.save(new Vracht(3, KratFormaat.SMALL, AggregatieToestand.VAST, true, 1, 10));
             Rit rit1 = ritService.save(new Rit(1, trein, null, List.of(vracht1), ZonedDateTime.now(), station1, station2));
-            Rit rit2 = ritService.save(new Rit(1, trein, null, List.of(vracht1), ZonedDateTime.now(), station3, station2));
+            Rit rit2 = ritService.save(new Rit(2, trein, null, List.of(vracht2), ZonedDateTime.now(), station3, station2));
+            Rit rit3 = ritService.save(new Rit(3, trein, null, List.of(vracht3), ZonedDateTime.now(), station2, station3));
 
         };
     }
