@@ -25,17 +25,19 @@ final public class MaanAdministratie implements Serializable {
     LandbouwPerceelService landbouwPerceelService;
     WoonperceelService woonPerceelService;
     RitService ritService;
+    InwonerService inwonerService;
 
     @Autowired
     public MaanAdministratie(PerceelService perceelService, TransactieService transactieService,
                              MijnbouwPerceelService mijnbouwPerceelService, LandbouwPerceelService landbouwPerceelService,
-                             WoonperceelService woonPerceelService, RitService ritService) {
+                             WoonperceelService woonPerceelService, RitService ritService, InwonerService inwonerService) {
         this.perceelService = perceelService;
         this.transactieService = transactieService;
         this.mijnbouwPerceelService = mijnbouwPerceelService;
         this.landbouwPerceelService = landbouwPerceelService;
         this.woonPerceelService = woonPerceelService;
         this.ritService = ritService;
+        this.inwonerService = inwonerService;
     }
 
     //Percelen die vaker dan gemiddeld zijn verkocht
@@ -235,13 +237,13 @@ final public class MaanAdministratie implements Serializable {
         }
 
         try (ObjectInputStream bw = new ObjectInputStream(new BufferedInputStream(new FileInputStream(new File("src/main/resources/rittenlijst.txt"))));
-        BufferedWriter illegaal = new BufferedWriter(new FileWriter(new File("src/main/resources/illegaal.txt")))) {
+             BufferedWriter illegaal = new BufferedWriter(new FileWriter(new File("src/main/resources/illegaal.txt")))) {
 
             while (true) {
                 Rit rit = (Rit) bw.readObject();
                 var perceel = rit.getBeginStation().getPerceel();
                 if (perceel instanceof LandbouwPerceel) {
-                    if (((LandbouwPerceel) perceel).getvergunning().isEmpty() && ((LandbouwPerceel) perceel).getGewas().isOpiaat())  {
+                    if (((LandbouwPerceel) perceel).getvergunning().isEmpty() && ((LandbouwPerceel) perceel).getGewas().isOpiaat()) {
                         //regel naar bestand
                         illegaal.write("illegaal opiaat perceelId " + perceel.getId());
                     }
@@ -259,6 +261,7 @@ final public class MaanAdministratie implements Serializable {
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+
 
     }
 
